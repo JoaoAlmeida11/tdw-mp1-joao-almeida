@@ -4,14 +4,15 @@ require("dotenv").config({
 
 const contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID,
+  environment: process.env.CONTENTFUL_ENVIRONMENT,
   accessToken:
     process.env.CONTENTFUL_ACCESS_TOKEN ||
     process.env.CONTENTFUL_DELIVERY_TOKEN,
 };
 
-const { spaceId, accessToken } = contentfulConfig;
+const { spaceId, environment, accessToken } = contentfulConfig;
 
-if (!spaceId || !accessToken) {
+if (!spaceId || !accessToken || !environment) {
   throw new Error(
     "Contentful spaceId and the access token need to be provided."
   );
