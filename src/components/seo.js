@@ -1,8 +1,14 @@
-import * as React from 'react'
-import { Helmet } from 'react-helmet'
-import { useStaticQuery, graphql } from 'gatsby'
+import * as React from "react";
+import { Helmet } from "react-helmet";
+import { useStaticQuery, graphql } from "gatsby";
 
-const Seo = ({ description = '', lang = 'en', meta = [], title, image }) => {
+const Seo = function ({
+  description = "",
+  lang = "en",
+  meta = [],
+  title,
+  image,
+}) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -14,10 +20,10 @@ const Seo = ({ description = '', lang = 'en', meta = [], title, image }) => {
         }
       }
     `
-  )
+  );
 
-  const metaDescription = description || site.siteMetadata.description
-  const defaultTitle = site.siteMetadata?.title
+  const metaDescription = description || site.siteMetadata.description;
+  const defaultTitle = site.siteMetadata?.title;
 
   return (
     <Helmet
@@ -29,48 +35,48 @@ const Seo = ({ description = '', lang = 'en', meta = [], title, image }) => {
       titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
       meta={[
         {
-          name: `description`,
+          name: "description",
           content: metaDescription,
         },
         {
-          name: `image`,
+          name: "image",
           content: image,
         },
         {
-          property: `og:title`,
+          property: "og:title",
           content: title,
         },
         {
-          property: `og:description`,
+          property: "og:description",
           content: metaDescription,
         },
         {
-          property: `og:type`,
-          content: `website`,
+          property: "og:type",
+          content: "website",
         },
         {
-          property: `og:image`,
+          property: "og:image",
           content: image,
         },
         {
-          name: `twitter:card`,
-          content: `summary_large_image`,
+          name: "twitter:card",
+          content: "summary_large_image",
         },
         {
-          name: `twitter:creator`,
-          content: site.siteMetadata?.social?.twitter || ``,
+          name: "twitter:creator",
+          content: site.siteMetadata?.social?.twitter || "",
         },
         {
-          name: `twitter:title`,
+          name: "twitter:title",
           content: title,
         },
         {
-          name: `twitter:description`,
+          name: "twitter:description",
           content: metaDescription,
         },
       ].concat(meta)}
     />
-  )
-}
+  );
+};
 
-export default Seo
+export default Seo;
