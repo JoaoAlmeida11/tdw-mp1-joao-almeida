@@ -1,0 +1,6 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# https://github.com/typescript-eslint/typescript-eslint/blob/master/.husky/pre-push
+# https://github.com/typescript-eslint/typescript-eslint/blob/master/package.json
+# yarn check-format
