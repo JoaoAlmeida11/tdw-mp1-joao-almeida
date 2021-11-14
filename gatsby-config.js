@@ -1,4 +1,4 @@
-require("dotenv").config({
+require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
@@ -14,24 +14,24 @@ const { spaceId, environment, accessToken } = contentfulConfig;
 
 if (!spaceId || !accessToken || !environment) {
   throw new Error(
-    "Contentful spaceId and the access token need to be provided."
+    'Contentful spaceId and the access token need to be provided.',
   );
 }
 
 module.exports = {
   siteMetadata: {
-    title: "TDW - MP1",
-    description: "TDW - MP1",
+    title: 'TDW - MP1',
+    description: 'TDW - MP1',
   },
-  pathPrefix: "/",
+  pathPrefix: '/',
   plugins: [
-    "gatsby-transformer-remark",
-    "gatsby-transformer-sharp",
-    "gatsby-plugin-react-helmet",
-    "gatsby-plugin-sharp",
-    "gatsby-plugin-image",
+    'gatsby-transformer-remark',
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sharp',
+    'gatsby-plugin-image',
     {
-      resolve: "gatsby-source-contentful",
+      resolve: 'gatsby-source-contentful',
       options: contentfulConfig,
     },
   ],

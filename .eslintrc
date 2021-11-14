@@ -1,0 +1,41 @@
+{
+  "root": true,
+  "env": {
+      "browser": true,
+      "es2021": true,
+      "node": true,
+      "jest": true
+  },
+  "extends": [
+      "plugin:gatsby/recommended"
+  ],
+  "parserOptions": {
+      "ecmaFeatures": {
+          "jsx": true
+      },
+      "ecmaVersion": 12,
+      "sourceType": "module"
+  },
+  "plugins": [
+      "gatsby",
+      "prettier",
+      "jam3"
+  ],
+  "globals": {
+    "graphql": true
+  },
+  "settings": {
+      "react": {
+          "version": "detect"
+      }
+  },
+  "rules": {
+     "gatsby/purify-html": 0,
+    "jam3/no-sanitizer-with-danger": [
+        2,
+        {
+          "wrapperName": ["sanitizer"]
+        }
+      ]
+  }
+}
