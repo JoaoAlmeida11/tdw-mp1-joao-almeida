@@ -7,7 +7,7 @@
       "jest": true
   },
   "extends": [
-      "plugin:gatsby/recommended"
+    "plugin:gatsby/recommended"
   ],
   "parserOptions": {
       "ecmaFeatures": {
@@ -36,6 +36,7 @@
         {
           "wrapperName": ["sanitizer"]
         }
-      ]
+      ],
+    "gatsby/use-gatsby-link" : 0 //needs a fix so it knows when the link is external or not
   }
 }

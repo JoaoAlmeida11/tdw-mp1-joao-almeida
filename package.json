@@ -5,7 +5,6 @@
   "version": "0.0.1",
   "dependencies": {
     "babel-preset-gatsby": "^2.1.2",
-    "core-js": "^3.19.1",
     "dompurify": "^2.3.3",
     "gatsby": "^4.0.0",
     "gatsby-plugin-image": "^2.1.0",
@@ -22,13 +21,17 @@
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
+    "@babel/preset-react": "^7.16.0",
+    "@babel/runtime": "^7.16.3",
     "@commitlint/cli": "^14.1.0",
     "@commitlint/config-conventional": "^14.1.0",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^12.1.2",
     "babel-eslint": "^10.1.0",
+    "babel-jest": "^27.3.1",
     "chalk": "^4.1.2",
     "contentful-import": "^7.8.6",
+    "core-js": "^3.19.1",
     "depcheck": "^1.4.2",
     "dotenv": "^10.0.0",
     "eslint": "^8.2.0",
@@ -42,14 +45,16 @@
     "gatsby-plugin-eslint": "^4.0.2",
     "git-cz": "^4.8.0",
     "husky": "^7.0.0",
+    "identity-obj-proxy": "^3.0.0",
     "inquirer": "^8.2.0",
-    "install-peerdeps": "^3.0.3",
     "jest": "^27.3.1",
+    "jest-junit": "^13.0.0",
+    "jest-preset-gatsby": "^1.0.134",
     "lint-staged": "^11.2.6",
     "netlify-cli": "^6.14.18",
     "prettier": "^2.4.1",
+    "react-test-renderer": "^17.0.2",
     "sharp": "^0.29.2",
-    "typescript": "^4.4.4",
     "webpack": "^5.64.0",
     "yargs-parser": "^20.2.9"
   },
@@ -68,7 +73,9 @@
     "prepare": "husky install",
     "lint": "eslint src/ --ext .js --fix",
     "check-format": "prettier --list-different \"./**/*.{md,mdx,ts,js,tsx,jsx}\"",
-    "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,json,md,css}\""
+    "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,json,md,css}\"",
+    "test": "jest",
+    "test:ci": "jest --config ./jest.config.js --collectCoverage --coverageDirectory=\"./coverage\" --ci --reporters=default --reporters=jest-junit --watchAll=false"
   },
   "packageManager": "yarn@3.1.0"
 }

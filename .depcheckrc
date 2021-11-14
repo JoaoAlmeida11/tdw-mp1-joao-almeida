@@ -1,0 +1,12 @@
+ignores: [
+    "eslint-*",
+    "babel-*",
+    "@commitlint/cli",
+    "@commitlint/config-conventional",
+    "gatsby-plugin-eslint",
+    "jest",
+    "lint-staged",
+    "netlify-cli",
+    "webpack",
+    "core-js"
+]
