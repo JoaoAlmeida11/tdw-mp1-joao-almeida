@@ -1,7 +1,7 @@
-import React from "react";
-import { GatsbyImage } from "gatsby-plugin-image";
+import React from 'react';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
-import * as styles from "./hero.module.css";
+import * as styles from './hero.module.css';
 
 const Hero = function ({ image, title, content }) {
   return (

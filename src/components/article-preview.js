@@ -1,10 +1,11 @@
-import React from "react";
-import { Link } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
+import React from 'react';
+import { Link } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
+import DOMPurify from 'dompurify';
 
-import Container from "./container";
-import Tags from "./tags";
-import * as styles from "./article-preview.module.css";
+import Container from './container';
+import Tags from './tags';
+import * as styles from './article-preview.module.css';
 
 const ArticlePreview = function ({ posts }) {
   if (!posts) return null;
@@ -13,7 +14,7 @@ const ArticlePreview = function ({ posts }) {
   return (
     <Container>
       <ul className={styles.articleList}>
-        {posts.map((post) => (
+        {posts.map(post => (
           <li key={post.slug}>
             <Link to={`/blog/${post.slug}`} className={styles.link}>
               <GatsbyImage alt="" image={post.heroImage.gatsbyImageData} />
@@ -21,7 +22,9 @@ const ArticlePreview = function ({ posts }) {
             </Link>
             <div
               dangerouslySetInnerHTML={{
-                __html: post.description.childMarkdownRemark.html,
+                __html: DOMPurify.sanitize(
+                  post.description.childMarkdownRemark.html,
+                ),
               }}
             />
             <div className={styles.meta}>

@@ -6,6 +6,7 @@
   "dependencies": {
     "babel-preset-gatsby": "^2.1.2",
     "core-js": "^3.19.1",
+    "dompurify": "^2.3.3",
     "gatsby": "^4.0.0",
     "gatsby-plugin-image": "^2.1.0",
     "gatsby-plugin-react-helmet": "^5.1.0",
@@ -34,6 +35,7 @@
     "eslint-plugin-gatsby": "^1.0.2",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.27.0",
     "eslint-webpack-plugin": "^3.1.1",
     "gatsby-plugin-eslint": "^4.0.2",
@@ -63,7 +65,9 @@
     "commit": "git-cz",
     "depcheck": "depcheck",
     "prepare": "husky install",
-    "lint": "eslint src/ --ext .js --fix"
+    "lint": "eslint src/ --ext .js --fix",
+    "check-format": "prettier --list-different \"./**/*.{md,mdx,ts,js,tsx,jsx}\"",
+    "format": "prettier --write \"./**/*.{ts,tsx,js,jsx,json,md,css}\""
   },
   "packageManager": "yarn@3.1.0"
 }

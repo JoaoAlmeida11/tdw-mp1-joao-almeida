@@ -1,10 +1,10 @@
-import * as React from "react";
-import { Helmet } from "react-helmet";
-import { useStaticQuery, graphql } from "gatsby";
+import * as React from 'react';
+import { Helmet } from 'react-helmet';
+import { useStaticQuery, graphql } from 'gatsby';
 
 const Seo = function ({
-  description = "",
-  lang = "en",
+  description = '',
+  lang = 'en',
   meta = [],
   title,
   image,
@@ -19,7 +19,7 @@ const Seo = function ({
           }
         }
       }
-    `
+    `,
   );
 
   const metaDescription = description || site.siteMetadata.description;
@@ -35,43 +35,43 @@ const Seo = function ({
       titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
       meta={[
         {
-          name: "description",
+          name: 'description',
           content: metaDescription,
         },
         {
-          name: "image",
+          name: 'image',
           content: image,
         },
         {
-          property: "og:title",
+          property: 'og:title',
           content: title,
         },
         {
-          property: "og:description",
+          property: 'og:description',
           content: metaDescription,
         },
         {
-          property: "og:type",
-          content: "website",
+          property: 'og:type',
+          content: 'website',
         },
         {
-          property: "og:image",
+          property: 'og:image',
           content: image,
         },
         {
-          name: "twitter:card",
-          content: "summary_large_image",
+          name: 'twitter:card',
+          content: 'summary_large_image',
         },
         {
-          name: "twitter:creator",
-          content: site.siteMetadata?.social?.twitter || "",
+          name: 'twitter:creator',
+          content: site.siteMetadata?.social?.twitter || '',
         },
         {
-          name: "twitter:title",
+          name: 'twitter:title',
           content: title,
         },
         {
-          name: "twitter:description",
+          name: 'twitter:description',
           content: metaDescription,
         },
       ].concat(meta)}

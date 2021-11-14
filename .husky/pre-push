@@ -3,4 +3,4 @@
 
 # https://github.com/typescript-eslint/typescript-eslint/blob/master/.husky/pre-push
 # https://github.com/typescript-eslint/typescript-eslint/blob/master/package.json
-# yarn check-format
+yarn check-format && yarn lint
