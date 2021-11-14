@@ -10,6 +10,7 @@ import * as styles from './article-preview.module.css';
 const ArticlePreview = function ({ posts }) {
   if (!posts) return null;
   if (!Array.isArray(posts)) return null;
+  const sanitizer = DOMPurify.sanitize;
 
   return (
     <Container>
@@ -22,9 +23,7 @@ const ArticlePreview = function ({ posts }) {
             </Link>
             <div
               dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(
-                  post.description.childMarkdownRemark.html,
-                ),
+                __html: sanitizer(post.description.childMarkdownRemark.html),
               }}
             />
             <div className={styles.meta}>

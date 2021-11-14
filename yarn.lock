@@ -9729,6 +9729,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-plugin-jam3@npm:^0.2.3":
+  version: 0.2.3
+  resolution: "eslint-plugin-jam3@npm:0.2.3"
+  dependencies:
+    doctrine: ^2.1.0
+    has: ^1.0.3
+    requireindex: ~1.1.0
+  checksum: 3d36040788e555dc33d2fa8d570664294dc00443f0f55dfae7c7a4892052dd82c165600b7b1ca95e728e7a46a2f6de3cf38f80c0f64a2fddd2c0062ab1d7ccc2
+  languageName: node
+  linkType: hard
+
 "eslint-plugin-jsx-a11y@npm:^6.4.1":
   version: 6.4.1
   resolution: "eslint-plugin-jsx-a11y@npm:6.4.1"
@@ -20920,6 +20931,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"requireindex@npm:~1.1.0":
+  version: 1.1.0
+  resolution: "requireindex@npm:1.1.0"
+  checksum: 397057d97d7f753a3851abf0d6db94c295bd8254536f71f622b896ba08ea8c0d3e3771c8b009a557e6ce602f4245c0588836cdf59c4ce588fff721a7b855d323
+  languageName: node
+  linkType: hard
+
 "requires-port@npm:^1.0.0":
   version: 1.0.0
   resolution: "requires-port@npm:1.0.0"
@@ -22818,6 +22836,7 @@ __metadata:
     eslint: ^8.2.0
     eslint-plugin-gatsby: ^1.0.2
     eslint-plugin-import: ^2.25.3
+    eslint-plugin-jam3: ^0.2.3
     eslint-plugin-jsx-a11y: ^6.5.1
     eslint-plugin-prettier: ^4.0.0
     eslint-plugin-react: ^7.27.0

@@ -14,6 +14,7 @@ class BlogPostTemplate extends React.Component {
     const post = get(this.props, 'data.contentfulBlogPost');
     const previous = get(this.props, 'data.previous');
     const next = get(this.props, 'data.next');
+    const sanitizer = DOMPurify.sanitize;
 
     return (
       <Layout location={this.props.location}>
@@ -37,9 +38,7 @@ class BlogPostTemplate extends React.Component {
             <div
               className={styles.body}
               dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(
-                  post.body?.childMarkdownRemark?.html,
-                ),
+                __html: sanitizer(post.body?.childMarkdownRemark?.html),
               }}
             />
             <Tags tags={post.tags} />

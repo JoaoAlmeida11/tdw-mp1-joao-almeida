@@ -18,7 +18,8 @@
   },
   "plugins": [
       "gatsby",
-      "prettier"
+      "prettier",
+      "jam3"
   ],
   "globals": {
     "graphql": true
@@ -29,6 +30,12 @@
       }
   },
   "rules": {
-    
+     "gatsby/purify-html": 0,
+    "jam3/no-sanitizer-with-danger": [
+        2,
+        {
+          "wrapperName": ["sanitizer"]
+        }
+      ]
   }
 }
