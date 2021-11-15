@@ -16,7 +16,9 @@ yarn_install_verify:
 
 lint:
   stage: code-check
-  only: [merge_requests]
+  # only: [merge_requests]
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
   script:
     - yarn lint
 
