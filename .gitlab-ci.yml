@@ -2,40 +2,42 @@ image: node:16
 
 # There is no install stage since it only needs to verify the cache and in case of some unplugged dependency to install it (caching unplugged one's doesn't work properly for what appear to be laking support from the dependency for PnP)
 stages:
-#  - code-check
-#  - test
+ - code-check
+ - test
 #  - build
  - deploy
 
 
-# lint:
-#   stage: code-check
-#   script:
-#     - yarn lint
+lint:
+  stage: code-check
+  only: [merge_requests]
+  script:
+    - yarn lint
 
-# prettier:
-#   stage: code-check
-#   script:
-#     - yarn check-format
+prettier:
+  stage: code-check
+  only: [merge_requests]
+  script:
+    - yarn check-format
 
-# test_jest:
-#   stage: test
-#   coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
-#   dependencies:
-#     - install_yarn # which jobs it depends on
-#   script:
-#     - yarn test:ci
-#   cache:
-#     paths:
-#      - coverage/
-#   artifacts:
-#     paths: 
-#      - coverage/
-#     when: always
-#     reports:
-#       junit:
-#         - junit.xml
-#       cobertura: coverage/cobertura-coverage.xml
+test_jest:
+  stage: test
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+  dependencies:
+    - install_yarn # which jobs it depends on
+  script:
+    - yarn test:ci
+  cache:
+    paths:
+     - coverage/
+  artifacts:
+    paths: 
+     - coverage/
+    when: always
+    reports:
+      junit:
+        - junit.xml
+      cobertura: coverage/cobertura-coverage.xml
 
 
 # build_yarn:
@@ -57,8 +59,8 @@ stages:
 
 netlify:
   stage: deploy
-  # rules:        
-  #   - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  rules:        
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   # dependencies:
   #   - build_yarn
   script:
@@ -66,3 +68,10 @@ netlify:
   artifacts:
     paths:
       - public
+
+
+# merge-request-pipeline-job:
+#   rules:
+#     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+#   script:
+#     - echo true
