@@ -10,18 +10,13 @@ stages:
 install_yarn: # can be any name you want
   stage: install
   script:
-    - yarn install --immutable --immutable-cache # if accepted external PRs add --check-cache
+    - yarn install --immutable # if accepted external PRs add --check-cache ; because of unplugged dependencies can't have this option --immutable-cache since they need to be installed
   cache:
     key:
       files:
       - package-lock.json
     paths:
       - .yarn
-  artifacts:
-    expire_in: 1 days
-    when: on_success
-    paths:
-      - .cache
 
 lint:
   stage: code-check
