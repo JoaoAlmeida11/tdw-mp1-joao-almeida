@@ -1,22 +1,22 @@
 image: node:16
 
 stages:
- - install
+#  - install
 #  - code-check
 #  - test
  - build
  - deploy
 
-install_yarn: # can be any name you want
-  stage: install
-  script:
-    - yarn install # --immutable  ; if accepted external PRs add --check-cache ; because of unplugged dependencies can't have this option --immutable-cache since they need to be installed
-  cache:
-    key:
-      files:
-      - package-lock.json
-    paths:
-      - .yarn
+# install_yarn: # can be any name you want
+#   stage: install
+#   script:
+#     - yarn install # --immutable  ; if accepted external PRs add --check-cache ; because of unplugged dependencies can't have this option --immutable-cache since they need to be installed
+#   cache:
+#     key:
+#       files:
+#       - package-lock.json
+#     paths:
+#       - .yarn
 
 # lint:
 #   stage: code-check
@@ -52,8 +52,8 @@ build_yarn:
   stage: build
   # rules:        
   #   - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-  dependencies:
-    - install_yarn
+  # dependencies:
+  #   - install_yarn
   script:
     - yarn build
   cache:
