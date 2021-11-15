@@ -1,22 +1,12 @@
 image: node:16
 
+# There is no install stage since it only needs to verify the cache and in case of some unplugged dependency to install it (caching unplugged one's doesn't work properly for what appear to be laking support from the dependency for PnP)
 stages:
-#  - install
 #  - code-check
 #  - test
- - build
+#  - build
  - deploy
 
-# install_yarn: # can be any name you want
-#   stage: install
-#   script:
-#     - yarn install # --immutable  ; if accepted external PRs add --check-cache ; because of unplugged dependencies can't have this option --immutable-cache since they need to be installed
-#   cache:
-#     key:
-#       files:
-#       - package-lock.json
-#     paths:
-#       - .yarn
 
 # lint:
 #   stage: code-check
@@ -48,31 +38,31 @@ stages:
 #       cobertura: coverage/cobertura-coverage.xml
 
 
-build_yarn:
-  stage: build
-  # rules:        
-  #   - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-  # dependencies:
-  #   - install_yarn
-  script:
-    - yarn install && yarn build
-  cache:
-    paths:
-     - public/
-  artifacts:
-    expire_in: 1 days
-    when: on_success
-    paths: 
-     - public/
+# build_yarn:
+#   stage: build
+#   # rules:        
+#   #   - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+#   # dependencies:
+#   #   - install_yarn
+#   script:
+#     - yarn install && yarn build # yarn install is only to verify cache do to unplugged dependencies
+#   cache:
+#     paths:
+#      - public/
+#   artifacts:
+#     expire_in: 1 days
+#     when: on_success
+#     paths: 
+#      - public/
 
 netlify:
   stage: deploy
   # rules:        
   #   - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-  dependencies:
-    - build_yarn
+  # dependencies:
+  #   - build_yarn
   script:
-    - yarn install && yarn netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
+    - yarn install && yarn build && yarn netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod # yarn install is only to verify cache do to unplugged dependencies
   artifacts:
     paths:
       - public
