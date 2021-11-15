@@ -4,7 +4,7 @@ stages:
 #  - install
 #  - code-check
 #  - test
-#  - build
+ - build
  - deploy
 
 # install_yarn: # can be any name you want
@@ -48,31 +48,31 @@ stages:
 #       cobertura: coverage/cobertura-coverage.xml
 
 
-# build_yarn:
-#   stage: build
-#   # rules:        
-#   #   - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-#   # dependencies:
-#   #   - install_yarn
-#   script:
-#     - yarn build
-#   cache:
-#     paths:
-#      - public/
-#   artifacts:
-#     expire_in: 1 days
-#     when: on_success
-#     paths: 
-#      - public/
+build_yarn:
+  stage: build
+  # rules:        
+  #   - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  # dependencies:
+  #   - install_yarn
+  script:
+    - yarn install && yarn build
+  cache:
+    paths:
+     - public/
+  artifacts:
+    expire_in: 1 days
+    when: on_success
+    paths: 
+     - public/
 
 netlify:
   stage: deploy
   # rules:        
   #   - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-  # dependencies:
-  #   - build_yarn
+  dependencies:
+    - build_yarn
   script:
-    - yarn install && yarn build && yarn netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
+    - yarn install && yarn netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
   artifacts:
     paths:
       - public
