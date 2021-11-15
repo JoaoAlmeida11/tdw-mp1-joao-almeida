@@ -17,6 +17,7 @@ install_yarn: # can be any name you want
       - package-lock.json
     paths:
       - .yarn
+      - .cache
 
 # lint:
 #   stage: code-check
