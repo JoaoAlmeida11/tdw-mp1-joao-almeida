@@ -4,6 +4,8 @@
   "private": true,
   "version": "0.0.1",
   "dependencies": {
+    "@netlify/local-functions-proxy-linux-x64": "^1.1.1",
+    "@netlify/routing-local-proxy-linux-x64": "^0.34.1",
     "babel-preset-gatsby": "^2.1.2",
     "gatsby": "^4.0.0",
     "gatsby-plugin-image": "^2.1.0",

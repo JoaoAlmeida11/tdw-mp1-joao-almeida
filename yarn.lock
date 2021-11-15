@@ -3171,11 +3171,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@netlify/local-functions-proxy-linux-x64@npm:1.1.1":
+"@netlify/local-functions-proxy-linux-x64@npm:1.1.1, @netlify/local-functions-proxy-linux-x64@npm:^1.1.1":
   version: 1.1.1
   resolution: "@netlify/local-functions-proxy-linux-x64@npm:1.1.1"
   bin:
     local-functions-proxy: bin/local-functions-proxy
+  checksum: 925de3eb054363bd95787bed1a60ffc6cc809dab90701abc43c450baf7a42c45c0a5b7ecc6c5dbe070def049072f48d8ad1449bb2452a183530a1c4f94489dca
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
@@ -3311,6 +3312,7 @@ __metadata:
 "@netlify/routing-local-proxy-linux-x64@npm:^0.34.1":
   version: 0.34.1
   resolution: "@netlify/routing-local-proxy-linux-x64@npm:0.34.1"
+  checksum: dd16ba8f8c12a107e6ea12d140a53f715535190f8df90eeb7581ad4efdf2cc183e6e815247fbcf485063a30afeddc99fa7d944c455177d0e531ae1eb000ed524
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
@@ -22998,6 +23000,8 @@ __metadata:
     "@babel/runtime": ^7.16.3
     "@commitlint/cli": ^14.1.0
     "@commitlint/config-conventional": ^14.1.0
+    "@netlify/local-functions-proxy-linux-x64": ^1.1.1
+    "@netlify/routing-local-proxy-linux-x64": ^0.34.1
     "@testing-library/jest-dom": ^5.15.0
     "@testing-library/react": ^12.1.2
     babel-eslint: ^10.1.0
