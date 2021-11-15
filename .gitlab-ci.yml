@@ -1,0 +1,83 @@
+image: node:16
+
+stages:
+ - install
+ - code-check
+ - test
+ - build
+ - deploy
+
+install_yarn: # can be any name you want
+  stage: install
+  script:
+    - yarn install --immutable --immutable-cache # if accepted external PRs add --check-cache
+  cache:
+    key:
+      files:
+      - package-lock.json
+    paths:
+      - .yarn
+  artifacts:
+    expire_in: 1 days
+    when: on_success
+    paths:
+      - .cache
+
+lint:
+  stage: code-check
+  script:
+    - yarn lint
+
+prettier:
+  stage: code-check
+  script:
+    - yarn check-format
+
+test_jest:
+  stage: test
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+  dependencies:
+    - install_yarn # which jobs it depends on
+  script:
+    - yarn test:ci
+  cache:
+    paths:
+     - coverage/
+  artifacts:
+    paths: 
+     - coverage/
+    when: always
+    reports:
+      junit:
+        - junit.xml
+      cobertura: coverage/cobertura-coverage.xml
+
+
+build_yarn:
+  stage: build
+  # rules:        
+  #   - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  dependencies:
+    - install_yarn
+  script:
+    - yarn build
+  cache:
+    paths:
+     - public/
+  artifacts:
+    expire_in: 1 days
+    when: on_success
+    paths: 
+     - public/
+
+netlify:
+  stage: deploy
+  # rules:        
+  #   - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  dependencies:
+    - build_yarn
+  script:
+    - netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
+  artifacts:
+    paths:
+      - public
