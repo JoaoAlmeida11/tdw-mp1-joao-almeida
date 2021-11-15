@@ -23026,6 +23026,7 @@ __metadata:
     jest-preset-gatsby: ^1.0.134
     lint-staged: ^11.2.6
     lodash: ^4.17.21
+    netlify: ^8.0.4
     netlify-cli: ^6.14.23
     prettier: ^2.4.1
     react: ^17.0.2
