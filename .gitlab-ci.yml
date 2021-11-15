@@ -23,8 +23,6 @@ prettier:
 test_jest:
   stage: test
   coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
-  dependencies:
-    - install_yarn # which jobs it depends on
   script:
     - yarn test:ci
   cache:
@@ -44,8 +42,6 @@ test_jest:
 #   stage: build
 #   # rules:        
 #   #   - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-#   # dependencies:
-#   #   - install_yarn
 #   script:
 #     - yarn install && yarn build # yarn install is only to verify cache do to unplugged dependencies
 #   cache:
