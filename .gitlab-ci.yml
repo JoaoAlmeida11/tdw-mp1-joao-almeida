@@ -2,11 +2,17 @@ image: node:16
 
 # There is no install stage since it only needs to verify the cache and in case of some unplugged dependency to install it (caching unplugged one's doesn't work properly for what appear to be laking support from the dependency for PnP)
 stages:
+ - install
  - code-check
  - test
 #  - build
  - deploy
 
+yarn_install_verify:
+ stage: install
+ only: [external_pull_requests] #https://gitlab.com/gitlab-org/gitlab/-/issues/208692 well oh well can't verify if a MR is external; this project is private so it doesn't matter but still if it was public
+ script:
+    - yarn install --check-cache # verifies the checksums of the cache are legit (haven't been altered)
 
 lint:
   stage: code-check
