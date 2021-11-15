@@ -2,8 +2,8 @@ image: node:16
 
 stages:
  - install
- - code-check
- - test
+#  - code-check
+#  - test
  - build
  - deploy
 
@@ -18,34 +18,34 @@ install_yarn: # can be any name you want
     paths:
       - .yarn
 
-lint:
-  stage: code-check
-  script:
-    - yarn lint
+# lint:
+#   stage: code-check
+#   script:
+#     - yarn lint
 
-prettier:
-  stage: code-check
-  script:
-    - yarn check-format
+# prettier:
+#   stage: code-check
+#   script:
+#     - yarn check-format
 
-test_jest:
-  stage: test
-  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
-  dependencies:
-    - install_yarn # which jobs it depends on
-  script:
-    - yarn test:ci
-  cache:
-    paths:
-     - coverage/
-  artifacts:
-    paths: 
-     - coverage/
-    when: always
-    reports:
-      junit:
-        - junit.xml
-      cobertura: coverage/cobertura-coverage.xml
+# test_jest:
+#   stage: test
+#   coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+#   dependencies:
+#     - install_yarn # which jobs it depends on
+#   script:
+#     - yarn test:ci
+#   cache:
+#     paths:
+#      - coverage/
+#   artifacts:
+#     paths: 
+#      - coverage/
+#     when: always
+#     reports:
+#       junit:
+#         - junit.xml
+#       cobertura: coverage/cobertura-coverage.xml
 
 
 build_yarn:
