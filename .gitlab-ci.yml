@@ -72,7 +72,7 @@ netlify:
   dependencies:
     - build_yarn
   script:
-    - netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
+    - netlify-cli deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
   artifacts:
     paths:
       - public
