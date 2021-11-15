@@ -49,7 +49,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["contentful-import", "npm:7.9.42"],
             ["core-js", "npm:3.19.1"],
             ["depcheck", "npm:1.4.2"],
-            ["dompurify", "npm:2.3.3"],
             ["dotenv", "npm:10.0.0"],
             ["eslint", "npm:8.2.0"],
             ["eslint-plugin-gatsby", "npm:1.0.2"],
@@ -77,12 +76,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-preset-gatsby", "npm:1.0.134"],
             ["lint-staged", "npm:11.2.6"],
             ["lodash", "npm:4.17.21"],
-            ["netlify-cli", "npm:6.14.18"],
+            ["netlify-cli", "npm:6.14.23"],
             ["prettier", "npm:2.4.1"],
             ["react", "npm:17.0.2"],
             ["react-dom", "virtual:b9f40ab31b801c34ff68ba2f0ffed5513c28df462d1be51c4ae99d863c913d8cfd5832875898a1f9b98289738aa8733965aaa5d67a33268047b8762ce0e0344b#npm:17.0.2"],
             ["react-helmet", "virtual:b9f40ab31b801c34ff68ba2f0ffed5513c28df462d1be51c4ae99d863c913d8cfd5832875898a1f9b98289738aa8733965aaa5d67a33268047b8762ce0e0344b#npm:6.1.0"],
             ["react-test-renderer", "virtual:b9f40ab31b801c34ff68ba2f0ffed5513c28df462d1be51c4ae99d863c913d8cfd5832875898a1f9b98289738aa8733965aaa5d67a33268047b8762ce0e0344b#npm:17.0.2"],
+            ["sanitize-html", "npm:2.5.3"],
             ["sharp", "npm:0.29.2"],
             ["webpack", "virtual:b9f40ab31b801c34ff68ba2f0ffed5513c28df462d1be51c4ae99d863c913d8cfd5832875898a1f9b98289738aa8733965aaa5d67a33268047b8762ce0e0344b#npm:5.64.0"],
             ["yargs-parser", "npm:20.2.9"]
@@ -6395,10 +6395,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@netlify/build", [
-        ["npm:18.21.8", {
-          "packageLocation": "./.yarn/cache/@netlify-build-npm-18.21.8-acdfbc8f67-37d70a3d60.zip/node_modules/@netlify/build/",
+        ["npm:18.22.0", {
+          "packageLocation": "./.yarn/cache/@netlify-build-npm-18.22.0-2aca486e57-c1a214f078.zip/node_modules/@netlify/build/",
           "packageDependencies": [
-            ["@netlify/build", "npm:18.21.8"],
+            ["@netlify/build", "npm:18.22.0"],
             ["@bugsnag/js", "npm:7.13.3"],
             ["@netlify/cache-utils", "npm:2.0.4"],
             ["@netlify/config", "npm:15.8.2"],
@@ -6407,7 +6407,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@netlify/plugin-edge-handlers", "npm:1.11.22"],
             ["@netlify/plugins-list", "npm:4.2.0"],
             ["@netlify/run-utils", "npm:2.0.1"],
-            ["@netlify/zip-it-and-ship-it", "npm:4.29.1"],
+            ["@netlify/zip-it-and-ship-it", "npm:4.29.4"],
             ["@sindresorhus/slugify", "npm:1.1.2"],
             ["@ungap/from-entries", "npm:0.2.1"],
             ["ansi-escapes", "npm:4.3.2"],
@@ -6449,7 +6449,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["strip-ansi", "npm:6.0.1"],
             ["supports-color", "npm:8.1.1"],
             ["tmp-promise", "npm:3.0.3"],
-            ["ts-node", "virtual:acdfbc8f679ce0325ec36630cfa983a0290e41d208320a50e632f764aa3f5f15106e40dd1883b8d697f705197a481d51ea0eba41e5a6ed9d24d3f72b693101cd#npm:10.4.0"],
+            ["ts-node", "virtual:2aca486e57d039b281ac2623a8b1eb818eaafc9e14852d8a4fcbf0f9245e370df9ca5705f43b4d2ca7291b72e7ed86f0e32e524df44845522a97acee26fe544d#npm:10.4.0"],
             ["update-notifier", "npm:5.1.0"],
             ["uuid", "npm:8.3.2"],
             ["yargs", "npm:15.4.1"]
@@ -6803,6 +6803,88 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@netlify-zip-it-and-ship-it-npm-4.29.1-49d38037c0-c1fcc49192.zip/node_modules/@netlify/zip-it-and-ship-it/",
           "packageDependencies": [
             ["@netlify/zip-it-and-ship-it", "npm:4.29.1"],
+            ["@babel/parser", "npm:7.16.2"],
+            ["@netlify/esbuild", "npm:0.13.6"],
+            ["@vercel/nft", "npm:0.17.0"],
+            ["archiver", "npm:5.3.0"],
+            ["array-flat-polyfill", "npm:1.0.1"],
+            ["common-path-prefix", "npm:3.0.0"],
+            ["cp-file", "npm:9.1.0"],
+            ["del", "npm:6.0.0"],
+            ["elf-cam", "npm:0.1.1"],
+            ["end-of-stream", "npm:1.4.4"],
+            ["es-module-lexer", "npm:0.9.3"],
+            ["execa", "npm:5.1.1"],
+            ["filter-obj", "npm:2.0.2"],
+            ["find-up", "npm:5.0.0"],
+            ["glob", "npm:7.2.0"],
+            ["is-builtin-module", "npm:3.1.0"],
+            ["junk", "npm:3.1.0"],
+            ["locate-path", "npm:6.0.0"],
+            ["make-dir", "npm:3.1.0"],
+            ["merge-options", "npm:3.0.4"],
+            ["minimatch", "npm:3.0.4"],
+            ["p-map", "npm:4.0.0"],
+            ["path-exists", "npm:4.0.0"],
+            ["pkg-dir", "npm:5.0.0"],
+            ["precinct", "npm:8.2.0"],
+            ["read-package-json-fast", "npm:2.0.3"],
+            ["require-package-name", "npm:2.0.1"],
+            ["resolve", "patch:resolve@npm%3A2.0.0-next.3#~builtin<compat/resolve>::version=2.0.0-next.3&hash=07638b"],
+            ["semver", "npm:7.3.5"],
+            ["tmp-promise", "npm:3.0.3"],
+            ["toml", "npm:3.0.0"],
+            ["typescript", "patch:typescript@npm%3A4.4.4#~builtin<compat/typescript>::version=4.4.4&hash=ddd1e8"],
+            ["unixify", "npm:1.0.0"],
+            ["yargs", "npm:16.2.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:4.29.3", {
+          "packageLocation": "./.yarn/cache/@netlify-zip-it-and-ship-it-npm-4.29.3-df055ac8f6-a277a9e2de.zip/node_modules/@netlify/zip-it-and-ship-it/",
+          "packageDependencies": [
+            ["@netlify/zip-it-and-ship-it", "npm:4.29.3"],
+            ["@babel/parser", "npm:7.16.2"],
+            ["@netlify/esbuild", "npm:0.13.6"],
+            ["@vercel/nft", "npm:0.17.0"],
+            ["archiver", "npm:5.3.0"],
+            ["array-flat-polyfill", "npm:1.0.1"],
+            ["common-path-prefix", "npm:3.0.0"],
+            ["cp-file", "npm:9.1.0"],
+            ["del", "npm:6.0.0"],
+            ["elf-cam", "npm:0.1.1"],
+            ["end-of-stream", "npm:1.4.4"],
+            ["es-module-lexer", "npm:0.9.3"],
+            ["execa", "npm:5.1.1"],
+            ["filter-obj", "npm:2.0.2"],
+            ["find-up", "npm:5.0.0"],
+            ["glob", "npm:7.2.0"],
+            ["is-builtin-module", "npm:3.1.0"],
+            ["junk", "npm:3.1.0"],
+            ["locate-path", "npm:6.0.0"],
+            ["make-dir", "npm:3.1.0"],
+            ["merge-options", "npm:3.0.4"],
+            ["minimatch", "npm:3.0.4"],
+            ["p-map", "npm:4.0.0"],
+            ["path-exists", "npm:4.0.0"],
+            ["pkg-dir", "npm:5.0.0"],
+            ["precinct", "npm:8.2.0"],
+            ["read-package-json-fast", "npm:2.0.3"],
+            ["require-package-name", "npm:2.0.1"],
+            ["resolve", "patch:resolve@npm%3A2.0.0-next.3#~builtin<compat/resolve>::version=2.0.0-next.3&hash=07638b"],
+            ["semver", "npm:7.3.5"],
+            ["tmp-promise", "npm:3.0.3"],
+            ["toml", "npm:3.0.0"],
+            ["typescript", "patch:typescript@npm%3A4.4.4#~builtin<compat/typescript>::version=4.4.4&hash=ddd1e8"],
+            ["unixify", "npm:1.0.0"],
+            ["yargs", "npm:16.2.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:4.29.4", {
+          "packageLocation": "./.yarn/cache/@netlify-zip-it-and-ship-it-npm-4.29.4-ed27e26391-85e96a3b7a.zip/node_modules/@netlify/zip-it-and-ship-it/",
+          "packageDependencies": [
+            ["@netlify/zip-it-and-ship-it", "npm:4.29.4"],
             ["@babel/parser", "npm:7.16.2"],
             ["@netlify/esbuild", "npm:0.13.6"],
             ["@vercel/nft", "npm:0.17.0"],
@@ -13905,15 +13987,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["dompurify", [
-        ["npm:2.3.3", {
-          "packageLocation": "./.yarn/cache/dompurify-npm-2.3.3-a36506accf-947e366168.zip/node_modules/dompurify/",
-          "packageDependencies": [
-            ["dompurify", "npm:2.3.3"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["domutils", [
         ["npm:1.7.0", {
           "packageLocation": "./.yarn/cache/domutils-npm-1.7.0-7a1529fcfc-f60a725b1f.zip/node_modules/domutils/",
@@ -17357,6 +17430,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["get-caller-file", [
+        ["npm:1.0.3", {
+          "packageLocation": "./.yarn/cache/get-caller-file-npm-1.0.3-df430e7075-2b90a7f848.zip/node_modules/get-caller-file/",
+          "packageDependencies": [
+            ["get-caller-file", "npm:1.0.3"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:2.0.5", {
           "packageLocation": "./.yarn/cache/get-caller-file-npm-2.0.5-80e8a86305-b9769a836d.zip/node_modules/get-caller-file/",
           "packageDependencies": [
@@ -19063,10 +19143,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "SOFT",
         }],
-        ["virtual:6a6cf38b00479c5cee18f26d21d81656ed5f34b9665a22e06891d372b6404b957c5bdf474bd46af3a8e43b17c599dabe4ffb20710b1468cd6e3803cc0e2c8d4c#npm:1.4.0", {
-          "packageLocation": "./.yarn/__virtual__/inquirer-autocomplete-prompt-virtual-6ed241b4ad/0/cache/inquirer-autocomplete-prompt-npm-1.4.0-25e0001216-863d60d6be.zip/node_modules/inquirer-autocomplete-prompt/",
+        ["virtual:dd0d14e0cecdd92c08f766608966fdd41a20ce96d7554e4f7f0e01834b4233a28c09d6b8e6a8f1f2e62f8243c0d1c01e3353f79fa7d70bd49593b82707b0236b#npm:1.4.0", {
+          "packageLocation": "./.yarn/__virtual__/inquirer-autocomplete-prompt-virtual-80cf0530ce/0/cache/inquirer-autocomplete-prompt-npm-1.4.0-25e0001216-863d60d6be.zip/node_modules/inquirer-autocomplete-prompt/",
           "packageDependencies": [
-            ["inquirer-autocomplete-prompt", "virtual:6a6cf38b00479c5cee18f26d21d81656ed5f34b9665a22e06891d372b6404b957c5bdf474bd46af3a8e43b17c599dabe4ffb20710b1468cd6e3803cc0e2c8d4c#npm:1.4.0"],
+            ["inquirer-autocomplete-prompt", "virtual:dd0d14e0cecdd92c08f766608966fdd41a20ce96d7554e4f7f0e01834b4233a28c09d6b8e6a8f1f2e62f8243c0d1c01e3353f79fa7d70bd49593b82707b0236b#npm:1.4.0"],
             ["@types/inquirer", null],
             ["ansi-escapes", "npm:4.3.2"],
             ["chalk", "npm:4.1.2"],
@@ -22579,13 +22659,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["memoize-one", [
-        ["npm:5.2.1", {
-          "packageLocation": "./.yarn/cache/memoize-one-npm-5.2.1-ee0f8be979-a3cba7b824.zip/node_modules/memoize-one/",
-          "packageDependencies": [
-            ["memoize-one", "npm:5.2.1"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:6.0.0", {
           "packageLocation": "./.yarn/cache/memoize-one-npm-6.0.0-8b2a2cd020-f185ea69f7.zip/node_modules/memoize-one/",
           "packageDependencies": [
@@ -23529,6 +23602,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["mock-require", [
+        ["npm:3.0.3", {
+          "packageLocation": "./.yarn/cache/mock-require-npm-3.0.3-8b30178653-6355c0bd9d.zip/node_modules/mock-require/",
+          "packageDependencies": [
+            ["mock-require", "npm:3.0.3"],
+            ["get-caller-file", "npm:1.0.3"],
+            ["normalize-path", "npm:2.1.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["module-definition", [
         ["npm:3.3.1", {
           "packageLocation": "./.yarn/cache/module-definition-npm-3.3.1-16753154b4-f1c0587983.zip/node_modules/module-definition/",
@@ -23822,18 +23906,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["netlify-cli", [
-        ["npm:6.14.18", {
-          "packageLocation": "./.yarn/unplugged/netlify-cli-npm-6.14.18-6a6cf38b00/node_modules/netlify-cli/",
+        ["npm:6.14.23", {
+          "packageLocation": "./.yarn/unplugged/netlify-cli-npm-6.14.23-dd0d14e0ce/node_modules/netlify-cli/",
           "packageDependencies": [
-            ["netlify-cli", "npm:6.14.18"],
-            ["@netlify/build", "npm:18.21.8"],
+            ["netlify-cli", "npm:6.14.23"],
+            ["@netlify/build", "npm:18.22.0"],
             ["@netlify/config", "npm:15.8.2"],
             ["@netlify/framework-info", "npm:5.11.0"],
             ["@netlify/local-functions-proxy", "npm:1.1.1"],
             ["@netlify/plugin-edge-handlers", "npm:1.11.22"],
             ["@netlify/plugins-list", "npm:4.2.0"],
             ["@netlify/routing-local-proxy", "npm:0.34.1"],
-            ["@netlify/zip-it-and-ship-it", "npm:4.29.1"],
+            ["@netlify/zip-it-and-ship-it", "npm:4.29.3"],
             ["@oclif/command", "virtual:ecc7959038ac0a1a0921e6bb6784e8659391f4928bee05d5a0a7bbbc06365178ec5eb7a5fc14a702f8aa97057dfbe5f86d5ec96e1964db66981aca0f6932c272#npm:1.8.0"],
             ["@oclif/config", "npm:1.17.0"],
             ["@oclif/errors", "npm:1.3.5"],
@@ -23885,7 +23969,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["http-proxy-middleware", "npm:1.3.1"],
             ["https-proxy-agent", "npm:5.0.0"],
             ["inquirer", "npm:6.5.2"],
-            ["inquirer-autocomplete-prompt", "virtual:6a6cf38b00479c5cee18f26d21d81656ed5f34b9665a22e06891d372b6404b957c5bdf474bd46af3a8e43b17c599dabe4ffb20710b1468cd6e3803cc0e2c8d4c#npm:1.4.0"],
+            ["inquirer-autocomplete-prompt", "virtual:dd0d14e0cecdd92c08f766608966fdd41a20ce96d7554e4f7f0e01834b4233a28c09d6b8e6a8f1f2e62f8243c0d1c01e3353f79fa7d70bd49593b82707b0236b#npm:1.4.0"],
             ["is-docker", "npm:2.2.1"],
             ["is-plain-obj", "npm:3.0.0"],
             ["isexe", "npm:2.0.0"],
@@ -23896,8 +23980,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["lodash", "npm:4.17.21"],
             ["log-symbols", "npm:4.1.0"],
             ["make-dir", "npm:3.1.0"],
-            ["memoize-one", "npm:5.2.1"],
+            ["memoize-one", "npm:6.0.0"],
             ["minimist", "npm:1.2.5"],
+            ["mock-require", "npm:3.0.3"],
             ["multiparty", "npm:4.2.2"],
             ["netlify", "npm:8.0.4"],
             ["netlify-headers-parser", "npm:4.0.1"],
@@ -23905,7 +23990,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["netlify-redirector", "npm:0.2.1"],
             ["node-fetch", "npm:2.6.6"],
             ["node-version-alias", "npm:1.0.1"],
-            ["oclif-plugin-completion", "virtual:6a6cf38b00479c5cee18f26d21d81656ed5f34b9665a22e06891d372b6404b957c5bdf474bd46af3a8e43b17c599dabe4ffb20710b1468cd6e3803cc0e2c8d4c#npm:0.6.0"],
+            ["oclif-plugin-completion", "virtual:dd0d14e0cecdd92c08f766608966fdd41a20ce96d7554e4f7f0e01834b4233a28c09d6b8e6a8f1f2e62f8243c0d1c01e3353f79fa7d70bd49593b82707b0236b#npm:0.6.0"],
             ["omit.js", "npm:2.0.2"],
             ["open", "npm:7.4.2"],
             ["ora", "npm:5.4.1"],
@@ -24609,10 +24694,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "SOFT",
         }],
-        ["virtual:6a6cf38b00479c5cee18f26d21d81656ed5f34b9665a22e06891d372b6404b957c5bdf474bd46af3a8e43b17c599dabe4ffb20710b1468cd6e3803cc0e2c8d4c#npm:0.6.0", {
-          "packageLocation": "./.yarn/__virtual__/oclif-plugin-completion-virtual-142b2724b2/0/cache/oclif-plugin-completion-npm-0.6.0-3532362763-95de2382ae.zip/node_modules/oclif-plugin-completion/",
+        ["virtual:dd0d14e0cecdd92c08f766608966fdd41a20ce96d7554e4f7f0e01834b4233a28c09d6b8e6a8f1f2e62f8243c0d1c01e3353f79fa7d70bd49593b82707b0236b#npm:0.6.0", {
+          "packageLocation": "./.yarn/__virtual__/oclif-plugin-completion-virtual-9381b28bd3/0/cache/oclif-plugin-completion-npm-0.6.0-3532362763-95de2382ae.zip/node_modules/oclif-plugin-completion/",
           "packageDependencies": [
-            ["oclif-plugin-completion", "virtual:6a6cf38b00479c5cee18f26d21d81656ed5f34b9665a22e06891d372b6404b957c5bdf474bd46af3a8e43b17c599dabe4ffb20710b1468cd6e3803cc0e2c8d4c#npm:0.6.0"],
+            ["oclif-plugin-completion", "virtual:dd0d14e0cecdd92c08f766608966fdd41a20ce96d7554e4f7f0e01834b4233a28c09d6b8e6a8f1f2e62f8243c0d1c01e3353f79fa7d70bd49593b82707b0236b#npm:0.6.0"],
             ["@oclif/command", "virtual:ecc7959038ac0a1a0921e6bb6784e8659391f4928bee05d5a0a7bbbc06365178ec5eb7a5fc14a702f8aa97057dfbe5f86d5ec96e1964db66981aca0f6932c272#npm:1.8.0"],
             ["@oclif/config", "npm:1.17.0"],
             ["@oclif/errors", "npm:1.3.5"],
@@ -28373,6 +28458,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["postcss", "npm:7.0.39"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:2.5.3", {
+          "packageLocation": "./.yarn/cache/sanitize-html-npm-2.5.3-7830195385-6adf055e25.zip/node_modules/sanitize-html/",
+          "packageDependencies": [
+            ["sanitize-html", "npm:2.5.3"],
+            ["deepmerge", "npm:4.2.2"],
+            ["escape-string-regexp", "npm:4.0.0"],
+            ["htmlparser2", "npm:6.1.0"],
+            ["is-plain-object", "npm:5.0.0"],
+            ["parse-srcset", "npm:1.0.2"],
+            ["postcss", "npm:8.3.11"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["sass", [
@@ -30033,7 +30131,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["contentful-import", "npm:7.9.42"],
             ["core-js", "npm:3.19.1"],
             ["depcheck", "npm:1.4.2"],
-            ["dompurify", "npm:2.3.3"],
             ["dotenv", "npm:10.0.0"],
             ["eslint", "npm:8.2.0"],
             ["eslint-plugin-gatsby", "npm:1.0.2"],
@@ -30061,12 +30158,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-preset-gatsby", "npm:1.0.134"],
             ["lint-staged", "npm:11.2.6"],
             ["lodash", "npm:4.17.21"],
-            ["netlify-cli", "npm:6.14.18"],
+            ["netlify-cli", "npm:6.14.23"],
             ["prettier", "npm:2.4.1"],
             ["react", "npm:17.0.2"],
             ["react-dom", "virtual:b9f40ab31b801c34ff68ba2f0ffed5513c28df462d1be51c4ae99d863c913d8cfd5832875898a1f9b98289738aa8733965aaa5d67a33268047b8762ce0e0344b#npm:17.0.2"],
             ["react-helmet", "virtual:b9f40ab31b801c34ff68ba2f0ffed5513c28df462d1be51c4ae99d863c913d8cfd5832875898a1f9b98289738aa8733965aaa5d67a33268047b8762ce0e0344b#npm:6.1.0"],
             ["react-test-renderer", "virtual:b9f40ab31b801c34ff68ba2f0ffed5513c28df462d1be51c4ae99d863c913d8cfd5832875898a1f9b98289738aa8733965aaa5d67a33268047b8762ce0e0344b#npm:17.0.2"],
+            ["sanitize-html", "npm:2.5.3"],
             ["sharp", "npm:0.29.2"],
             ["webpack", "virtual:b9f40ab31b801c34ff68ba2f0ffed5513c28df462d1be51c4ae99d863c913d8cfd5832875898a1f9b98289738aa8733965aaa5d67a33268047b8762ce0e0344b#npm:5.64.0"],
             ["yargs-parser", "npm:20.2.9"]
@@ -30655,10 +30753,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "SOFT",
         }],
-        ["virtual:acdfbc8f679ce0325ec36630cfa983a0290e41d208320a50e632f764aa3f5f15106e40dd1883b8d697f705197a481d51ea0eba41e5a6ed9d24d3f72b693101cd#npm:10.4.0", {
-          "packageLocation": "./.yarn/__virtual__/ts-node-virtual-f78df5f608/0/cache/ts-node-npm-10.4.0-04cb6e2279-3933ac0a93.zip/node_modules/ts-node/",
+        ["virtual:2aca486e57d039b281ac2623a8b1eb818eaafc9e14852d8a4fcbf0f9245e370df9ca5705f43b4d2ca7291b72e7ed86f0e32e524df44845522a97acee26fe544d#npm:10.4.0", {
+          "packageLocation": "./.yarn/__virtual__/ts-node-virtual-8661584864/0/cache/ts-node-npm-10.4.0-04cb6e2279-3933ac0a93.zip/node_modules/ts-node/",
           "packageDependencies": [
-            ["ts-node", "virtual:acdfbc8f679ce0325ec36630cfa983a0290e41d208320a50e632f764aa3f5f15106e40dd1883b8d697f705197a481d51ea0eba41e5a6ed9d24d3f72b693101cd#npm:10.4.0"],
+            ["ts-node", "virtual:2aca486e57d039b281ac2623a8b1eb818eaafc9e14852d8a4fcbf0f9245e370df9ca5705f43b4d2ca7291b72e7ed86f0e32e524df44845522a97acee26fe544d#npm:10.4.0"],
             ["@cspotcode/source-map-support", "npm:0.7.0"],
             ["@swc/core", null],
             ["@swc/wasm", null],
