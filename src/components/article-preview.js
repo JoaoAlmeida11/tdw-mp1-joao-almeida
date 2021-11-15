@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import DOMPurify from 'dompurify';
+import sanitizeHtml from 'sanitize-html';
 
 import Container from './container';
 import Tags from './tags';
@@ -10,7 +10,7 @@ import * as styles from './article-preview.module.css';
 const ArticlePreview = function ({ posts }) {
   if (!posts) return null;
   if (!Array.isArray(posts)) return null;
-  const sanitizer = DOMPurify.sanitize;
+  const sanitizer = sanitizeHtml;
 
   return (
     <Container>
