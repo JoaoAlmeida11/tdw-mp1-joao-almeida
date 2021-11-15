@@ -24,7 +24,7 @@ test_jest:
   stage: test
   coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
   script:
-    - yarn test:ci
+    - yarn install && yarn test:ci
   cache:
     paths:
      - coverage/
