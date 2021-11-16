@@ -14,15 +14,13 @@ yarn_install_verify:
  script:
     - yarn install --check-cache # verifies the checksums of the cache are legit (haven't been altered)
 
+# To do a job that only runs on "schedule"
+# rules:
+#     - if: $CI_PIPELINE_SOURCE == "schedule"
+
 lint:
   stage: code-check
   only: [merge_requests]
-  script:
-    - yarn lint
-
-lint-on-schedule:
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
   script:
     - yarn lint
 
