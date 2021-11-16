@@ -50,7 +50,7 @@ jobs:
     - store_artifacts:
           path: coverage
 
-  deploy:
+  build:
     executor: node
     steps:
     - checkout
@@ -82,6 +82,6 @@ workflows:
                 - master
     jobs:
     - code-check
-  build:
+  deploy:
    jobs:
-      - deploy
+      - build
