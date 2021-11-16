@@ -71,13 +71,13 @@ jobs:
 
 workflows:
   version: 2
-  code-check:
-    jobs:
-    - code-check
-#  build_and_deploy:
- #   jobs:
-  #    - build
-   #   - deploy:
-    #      context: GatsbyNetlify
-     #     requires:
-      #      - build
+#  code-check:
+   # jobs:
+  #  - code-check
+  build_and_deploy:
+   jobs:
+      - build
+      - deploy:
+          context: GatsbyNetlify
+          requires:
+           - build
