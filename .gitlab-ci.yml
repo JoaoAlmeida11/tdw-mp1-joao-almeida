@@ -17,7 +17,12 @@ install_yarn: # can be any name you want
   stage: install
   script:
     - yarn install # --immutable; if accepted external PRs add --check-cache ; because of unplugged dependencies can't have this option --immutable-cache since they need to be installed
-
+  artifacts:
+    expire_in: 1 days
+    when: on_success
+    paths:
+      - .cache
+      - .yarn
 # yarn_install_verify:
 #  stage: install
 #  only: [external_pull_requests] #https://gitlab.com/gitlab-org/gitlab/-/issues/208692 well oh well can't verify if a MR is external; this project is private so it doesn't matter but still if it was public
