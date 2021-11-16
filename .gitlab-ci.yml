@@ -1,0 +1,88 @@
+image: node:16
+
+# There is no install stage since it only needs to verify the cache and in case of some unplugged dependency to install it (caching unplugged one's doesn't work properly for what appear to be laking support from the dependency for PnP)
+
+cache:
+    paths:
+      - .yarn/
+      - .cache/
+      - public/
+
+stages:
+#  - install
+ - code-check
+#  - build
+ - deploy
+
+# install_yarn: # can be any name you want
+#   stage: install
+#   script:
+#     - yarn install # --immutable; if accepted external PRs add --check-cache ; because of unplugged dependencies can't have this option --immutable-cache since they need to be installed
+
+# yarn_install_verify:
+#  stage: install
+#  only: [external_pull_requests] #https://gitlab.com/gitlab-org/gitlab/-/issues/208692 well oh well can't verify if a MR is external; this project is private so it doesn't matter but still if it was public
+#  script:
+#     - yarn install --check-cache # verifies the checksums of the cache are legit (haven't been altered)
+
+# To do a job that only runs on "schedule"
+# rules:
+#     - if: $CI_PIPELINE_SOURCE == "schedule"
+
+lint:
+  stage: code-check
+  script:
+    - yarn install && yarn lint && yarn check-format
+
+
+jest:
+  stage: code-check
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+  script:
+    - yarn install && yarn test:ci
+  cache:
+    paths:
+     - coverage/
+  artifacts:
+    paths: 
+     - coverage/
+    when: always
+    reports:
+      junit:
+        - junit.xml
+      cobertura: coverage/cobertura-coverage.xml
+
+
+# build_yarn:
+#   stage: build
+#   # rules:        
+#   #   - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+#   script:
+#     - yarn install && yarn build # yarn install is only to verify cache do to unplugged dependencies
+#   cache:
+#     paths:
+#      - public/
+#   artifacts:
+#     expire_in: 1 days
+#     when: on_success
+#     paths: 
+#      - public/
+
+netlify:
+  stage: deploy
+  rules:        
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  # dependencies:
+  #   - build_yarn
+  script:
+    - yarn install && yarn build && yarn netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod # yarn install is only to verify cache do to unplugged dependencies
+  artifacts:
+    paths:
+      - public
+
+
+# merge-request-pipeline-job:
+#   rules:
+#     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+#   script:
+#     - echo true
