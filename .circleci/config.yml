@@ -31,12 +31,6 @@ aliases:
       - ./node_modules
     
 jobs:
-  set-version:
-    executor: node
-    steps:
-    - run:
-        name: set yarn version
-        command: yarn set version berry
   code-check:
     executor: node
     steps:
@@ -65,8 +59,14 @@ jobs:
     executor: node
     steps:
     - checkout
-    - attach_workspace:
-        at: /home/circleci/project/
+   # - <<: *restore_cache
+   # - <<: *install_cache
+    - run:
+        name: Install
+        command: yarn install   
+    - run:
+        name: Build Public
+        command: yarn build    
     - run: 
         name: deploy site to netlify
         command: yarn netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
@@ -79,10 +79,7 @@ workflows:
   #  - code-check
   build_and_deploy:
    jobs:
-      - set-version
-      - build:
-          requires:
-           - set-version
-      - deploy:
-          requires:
-           - build
+      #- build
+      - deploy
+        #  requires:
+       #    - build
