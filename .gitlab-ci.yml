@@ -33,15 +33,11 @@ install_yarn: # can be any name you want
 
 lint:
   stage: code-check
-  dependencies:
-    - install_yarn
   script:
     - yarn lint
 
 prettier:
   stage: code-check
-  dependencies:
-    - install_yarn
   script:
     - yarn check-format
 
@@ -51,7 +47,7 @@ test_jest:
     - install_yarn
   coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
   script:
-    - yarn install && yarn test:ci
+    - yarn test:ci
   cache:
     paths:
      - coverage/
