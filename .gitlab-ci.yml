@@ -8,11 +8,22 @@ stages:
 #  - build
  - deploy
 
-yarn_install_verify:
- stage: install
- only: [external_pull_requests] #https://gitlab.com/gitlab-org/gitlab/-/issues/208692 well oh well can't verify if a MR is external; this project is private so it doesn't matter but still if it was public
- script:
-    - yarn install --check-cache # verifies the checksums of the cache are legit (haven't been altered)
+install_yarn: # can be any name you want
+  stage: install
+  script:
+    - yarn install --immutable # if accepted external PRs add --check-cache ; because of unplugged dependencies can't have this option --immutable-cache since they need to be installed
+  cache:
+    key:
+      files:
+      - package-lock.json
+    paths:
+      - .yarn
+
+# yarn_install_verify:
+#  stage: install
+#  only: [external_pull_requests] #https://gitlab.com/gitlab-org/gitlab/-/issues/208692 well oh well can't verify if a MR is external; this project is private so it doesn't matter but still if it was public
+#  script:
+#     - yarn install --check-cache # verifies the checksums of the cache are legit (haven't been altered)
 
 # To do a job that only runs on "schedule"
 # rules:
@@ -20,18 +31,24 @@ yarn_install_verify:
 
 lint:
   stage: code-check
+  dependencies:
+    - install_yarn
   only: [merge_requests]
   script:
     - yarn lint
 
 prettier:
   stage: code-check
+  dependencies:
+    - install_yarn
   only: [merge_requests]
   script:
     - yarn check-format
 
 test_jest:
   stage: test
+  dependencies:
+    - install_yarn
   coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
   script:
     - yarn install && yarn test:ci
