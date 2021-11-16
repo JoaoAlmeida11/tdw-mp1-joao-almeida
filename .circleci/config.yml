@@ -7,42 +7,14 @@ executors:
     docker:
     - image: circleci/node:<< parameters.image >>
 
-aliases:
-  restore_cache: &restore_cache
-    restore_cache:
-      name: Restore Cache
-      keys:
-      - v{{ .Environment.versionCache }}-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
-
-  install_node_modules: &install_node_modules
-    run:
-      name: Install NPM dependencies
-      command: yarn install
-
-  save_cache: &save_cache
-    save_cache:
-      name: Save cache
-      key: v{{ .Environment.versionCache }}-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
-      paths:
-      - ./.yarn
 
 version: 2.1
 
 jobs:
-  install:
-    executor: node
-    steps:
-    - checkout
-    - <<: *restore_cache
-    - <<: *install_node_modules
-    - <<: *save_cache
-
   code-check:
     executor: node
     steps:
     - checkout
-    - <<: *restore_cache
-    - <<: *install_node_modules
     - run:
         name: lint
         command: yarn lint
@@ -54,8 +26,6 @@ jobs:
     executor: node
     steps:
     - checkout
-    - <<: *restore_cache
-    - <<: *install_node_modules
     - run:
         name: Build Public
         command: yarn build
@@ -69,8 +39,6 @@ jobs:
     - checkout
     - attach_workspace:
         at: /home/circleci/project/
-    - <<: *restore_cache
-    - <<: *install_node_modules
     - run: 
         name: deploy site to netlify
         command: yarn netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
@@ -80,13 +48,8 @@ workflows:
   version: 2
   build_and_deploy:
     jobs:
-      - install
-      - code-check:
-          requires:
-            - install
-      - build:
-          requires:
-            - install
+      - code-check
+      - build
       - deploy:
           context: GatsbyNetlify
           requires:
