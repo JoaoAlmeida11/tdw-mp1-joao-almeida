@@ -37,6 +37,8 @@ stages:
 
 lint_format_test:
   stage: code-check
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
   script:
     - yarn install # yarn install is only to verify cache do to unplugged dependencies
     - yarn lint
