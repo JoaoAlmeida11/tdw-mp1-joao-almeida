@@ -55,11 +55,11 @@ jobs:
     executor: node
     steps:
     - checkout
-    - <<: *restore_cache
-    - <<: *install_cache
+   # - <<: *restore_cache
+   # - <<: *install_cache
     - run:
         name: Build Public
-        command: yarn build
+        command: yarn install && yarn build
 
   deploy:
     executor: node
