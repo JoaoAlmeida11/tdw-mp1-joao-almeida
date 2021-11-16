@@ -15,9 +15,9 @@ jobs:
     executor: node
     steps:
     - checkout
-    - run:
-        name: cache fix
-        command: yarn install
+   # - run:
+   #     name: cache fix
+   #     command: yarn install
     - run:
         name: lint
         command: yarn lint
