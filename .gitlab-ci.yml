@@ -37,8 +37,6 @@ lint:
 
 jest:
   stage: code-check
-  dependencies:
-    - install_yarn
   coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
   script:
     - yarn install && yarn test:ci
