@@ -19,7 +19,7 @@ stages:
 install_yarn: # can be any name you want
   stage: install
   script:
-    - yarn install --immutable # if accepted external PRs add --check-cache ; because of unplugged dependencies can't have this option --immutable-cache since they need to be installed
+    - yarn install # --immutable; if accepted external PRs add --check-cache ; because of unplugged dependencies can't have this option --immutable-cache since they need to be installed
 
 # yarn_install_verify:
 #  stage: install
