@@ -10,11 +10,33 @@ executors:
 
 version: 2.1
 
+aliases:
+  restore_cache: &restore_cache
+    restore_cache:
+      name: Restore Npm Package Cache
+      keys:
+      - v{{ .Environment.versionCache }}-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
+
+  install_node_modules: &install_node_modules
+    run:
+      name: Install Yarn dependencies
+      command: yarn install
+
+  save_cache: &save_cache
+    save_cache:
+      name: Save Yarn cache
+      key: v{{ .Environment.versionCache }}-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
+      paths:
+      - ./node_modules
+
 jobs:
   code-check:
     executor: node
     steps:
     - checkout
+    - <<: *restore_cache
+ #   - <<: *install_node_modules
+#    - <<: *save_cache
    # - run:
    #     name: cache fix
    #     command: yarn install
@@ -29,9 +51,9 @@ jobs:
     executor: node
     steps:
     - checkout
-    - run:
-        name: cache fix
-        command: yarn install
+    - <<: *restore_cache
+    - <<: *install_node_modules
+    - <<: *save_cache
     - run:
         name: Build Public
         command: yarn build
