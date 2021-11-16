@@ -84,6 +84,5 @@ workflows:
           requires:
            - set-version
       - deploy:
-          context: GatsbyNetlify
           requires:
            - build
