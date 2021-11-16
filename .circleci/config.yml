@@ -1,0 +1,87 @@
+executors:
+  node:
+    parameters:
+      image:
+        type: string
+        default: "lts"
+    docker:
+    - image: circleci/node:<< parameters.image >>
+
+
+version: 2.1
+
+aliases:
+  restore_cache: &restore_cache
+    restore_cache:
+      name: Restore Npm Package Cache
+      keys:
+      - v3-deps-{{ .Environment.versionCache }}-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
+      - v3-deps
+
+  install_cache: &install_cache
+    run:
+      name: Install Yarn dependencies
+      command: yarn install
+
+  save_cache: &save_cache
+    save_cache:
+      name: Save Yarn cache
+      key: v{{ .Environment.versionCache }}-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
+      paths:
+      - ./node_modules
+    
+jobs:
+  code-check:
+    executor: node
+    steps:
+    - checkout
+    - <<: *restore_cache
+    - <<: *install_cache
+    - <<: *save_cache
+    - run:
+        name: lint
+        command: yarn lint
+    - run:
+        name: check-format
+        command: yarn check-format
+    - run:
+        name: testing
+        command: yarn test:ci
+    - store_artifacts:
+          path: coverage
+
+  build:
+    executor: node
+    steps:
+    - checkout
+  #  - setup_remote_docker: # requires Performance Plan
+  #        docker_layer_caching: true # requires Performance Plan
+   # - <<: *restore_cache
+   # - <<: *install_cache
+    - run:
+        name: Install
+        command: yarn install   
+    - run:
+        name: Build Public
+        command: yarn build    
+    - run: 
+        name: deploy site to netlify
+        command: yarn netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
+
+
+workflows:
+  version: 2
+  checking_code:
+    triggers:
+    - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - circleci-project-setup
+                - master
+    jobs:
+    - code-check
+  deploy:
+   jobs:
+      - build

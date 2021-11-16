@@ -11560,6 +11560,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gatsby-worker@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "gatsby-worker@npm:1.2.0"
+  dependencies:
+    "@babel/core": ^7.15.5
+    "@babel/runtime": ^7.15.4
+  checksum: fef3dbe0a1ae2275f37a905488e6f802dd5fb09e7faf23411421e117223e0d3e8f3f5840bcf9f331b2a6783b39b2d0575d39ed5001a0b9893564bee3e20b8343
+  languageName: node
+  linkType: hard
+
 "gatsby@npm:^4.0.0":
   version: 4.1.1
   resolution: "gatsby@npm:4.1.1"
@@ -22835,6 +22845,7 @@ __metadata:
     gatsby-source-filesystem: ^4.1.2
     gatsby-transformer-remark: ^5.1.0
     gatsby-transformer-sharp: ^4.1.0
+    gatsby-worker: ^1.2.0
     git-cz: ^4.8.0
     husky: ^7.0.0
     identity-obj-proxy: ^3.0.0
