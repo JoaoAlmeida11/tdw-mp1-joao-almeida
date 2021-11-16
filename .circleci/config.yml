@@ -59,8 +59,8 @@ jobs:
     executor: node
     steps:
     - checkout
-    - setup_remote_docker:
-          docker_layer_caching: true    
+  #  - setup_remote_docker: # requires Performance Plan
+  #        docker_layer_caching: true # requires Performance Plan
    # - <<: *restore_cache
    # - <<: *install_cache
     - run:
@@ -74,14 +74,19 @@ jobs:
         command: yarn netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
 
 
+
 workflows:
   version: 2
-#  code-check:
-   # jobs:
-  #  - code-check
+  checking_code:
+    triggers:
+    - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - circleci-project-setup
+    jobs:
+    - code-check
   build_and_deploy:
    jobs:
-      #- build
       - deploy
-        #  requires:
-       #    - build
