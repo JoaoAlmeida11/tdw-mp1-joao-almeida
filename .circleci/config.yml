@@ -17,7 +17,7 @@ aliases:
       keys:
       - v{{ .Environment.versionCache }}-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
 
-  install_node_modules: &install_node_modules
+  install_cache: &install_cache
     run:
       name: Install Yarn dependencies
       command: yarn install
@@ -27,7 +27,7 @@ aliases:
       name: Save Yarn cache
       key: v{{ .Environment.versionCache }}-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
       paths:
-      - ./node_modules
+      - ./.yarn
 
 jobs:
   code-check:
@@ -35,11 +35,8 @@ jobs:
     steps:
     - checkout
     - <<: *restore_cache
-    - <<: *install_node_modules
-#    - <<: *save_cache
-   # - run:
-   #     name: cache fix
-   #     command: yarn install
+    - <<: *install_cache
+    - <<: *save_cache
     - run:
         name: lint
         command: yarn lint
@@ -52,7 +49,7 @@ jobs:
     steps:
     - checkout
     - <<: *restore_cache
-    - <<: *install_node_modules
+    - <<: *install_cache
     - <<: *save_cache
     - run:
         name: Build Public
