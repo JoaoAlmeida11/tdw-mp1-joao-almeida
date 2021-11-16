@@ -28,8 +28,8 @@ aliases:
       name: Save Yarn cache
       key: v{{ .Environment.versionCache }}-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
       paths:
-      - ./.yarn
-
+      - ./node_modules
+    
 jobs:
   set-version:
     executor: node
