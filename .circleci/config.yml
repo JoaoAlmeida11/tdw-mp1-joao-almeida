@@ -82,6 +82,6 @@ workflows:
      #           - master
     jobs:
     - code-check
-  build_and_deploy:
-   jobs:
-      - deploy
+  #build:
+   #jobs:
+   #   - deploy
