@@ -9,7 +9,6 @@ cache:
 stages:
  - install
  - code-check
- - test
 #  - build
  - deploy
 
@@ -43,8 +42,8 @@ prettier:
   script:
     - yarn check-format
 
-test_jest:
-  stage: test
+jest:
+  stage: code-check
   dependencies:
     - install_yarn
   coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
