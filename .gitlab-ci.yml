@@ -1,15 +1,18 @@
-image: node:16
+image: node:lts
+
+variables:
+  FF_USE_FASTZIP: "true"
+  ARTIFACT_COMPRESSION_LEVEL: fastest
+  CACHE_COMPRESSION_LEVEL: fastest
+  TRANSFER_METER_FREQUENCY: 5s
 
 include:
   - template: 'Workflows/Branch-Pipelines.gitlab-ci.yml'
 
 # There is no install stage since it only needs to verify the cache and in case of some unplugged dependency to install it (caching unplugged one's doesn't work properly for what appear to be laking support from the dependency for PnP)
 
-cache:
-    paths:
-      - .yarn/
-      - .cache/
-      - public/
+# no need for cache since its always on the repo
+# cache:
 
 stages:
 #  - install
@@ -26,7 +29,7 @@ stages:
 #  stage: install
 #  only: [external_pull_requests] #https://gitlab.com/gitlab-org/gitlab/-/issues/208692 well oh well can't verify if a MR is external; this project is private so it doesn't matter but still if it was public
 #  script:
-#     - yarn install --check-cache # verifies the checksums of the cache are legit (haven't been altered)
+#     - yarn install --immutable # ; if accepted external PRs add --check-cache ; because of unplugged dependencies can't have this option --immutable-cache since they need to be installed
 
 # To do a job that only runs on "schedule"
 # rules:
@@ -35,14 +38,17 @@ stages:
 lint:
   stage: code-check
   script:
-    - yarn install && yarn lint && yarn check-format
+    - yarn install # yarn install is only to verify cache do to unplugged dependencies
+    - yarn lint
+    - yarn check-format
 
 
 jest:
   stage: code-check
   coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
   script:
-    - yarn install && yarn test:ci
+    - yarn install # yarn install is only to verify cache do to unplugged dependencies
+    - yarn test:ci
   cache:
     paths:
      - coverage/
@@ -78,10 +84,9 @@ netlify:
   # dependencies:
   #   - build_yarn
   script:
-    - yarn install && yarn build && yarn netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod # yarn install is only to verify cache do to unplugged dependencies
-  # artifacts:
-  #   paths:
-  #     - public
+    - yarn install # yarn install is only to verify cache do to unplugged dependencies
+    - yarn build
+    - yarn netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod 
 
 
 # merge-request-pipeline-job:
