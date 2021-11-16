@@ -20,7 +20,7 @@ aliases:
   install_cache: &install_cache
     run:
       name: Install Yarn dependencies
-      command: yarn --frozen-lockfile --cache-folder ~/.cache/yarn # https://circleci.com/docs/2.0/caching/
+      command: yarn --immutable --immutable-cache ~/.cache/yarn # https://circleci.com/docs/2.0/caching/
 
   save_cache: &save_cache
     save_cache:
