@@ -1,6 +1,14 @@
 image: node:16
 
 # There is no install stage since it only needs to verify the cache and in case of some unplugged dependency to install it (caching unplugged one's doesn't work properly for what appear to be laking support from the dependency for PnP)
+
+cache:
+    key:
+      files:
+      - yarn.lock
+    paths:
+      - .yarn
+
 stages:
  - install
  - code-check
@@ -12,12 +20,6 @@ install_yarn: # can be any name you want
   stage: install
   script:
     - yarn install --immutable # if accepted external PRs add --check-cache ; because of unplugged dependencies can't have this option --immutable-cache since they need to be installed
-  cache:
-    key:
-      files:
-      - package-lock.json
-    paths:
-      - .yarn
 
 # yarn_install_verify:
 #  stage: install
