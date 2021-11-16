@@ -33,7 +33,6 @@ lint:
   stage: code-check
   dependencies:
     - install_yarn
-  only: [merge_requests]
   script:
     - yarn lint
 
@@ -41,7 +40,6 @@ prettier:
   stage: code-check
   dependencies:
     - install_yarn
-  only: [merge_requests]
   script:
     - yarn check-format
 
