@@ -1,5 +1,8 @@
 image: node:16
 
+include:
+  - template: 'Workflows/Branch-Pipelines.gitlab-ci.yml'
+
 # There is no install stage since it only needs to verify the cache and in case of some unplugged dependency to install it (caching unplugged one's doesn't work properly for what appear to be laking support from the dependency for PnP)
 
 cache:
@@ -76,9 +79,9 @@ netlify:
   #   - build_yarn
   script:
     - yarn install && yarn build && yarn netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod # yarn install is only to verify cache do to unplugged dependencies
-  artifacts:
-    paths:
-      - public
+  # artifacts:
+  #   paths:
+  #     - public
 
 
 # merge-request-pipeline-job:
