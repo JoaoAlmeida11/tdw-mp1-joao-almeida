@@ -15,9 +15,8 @@ aliases:
     restore_cache:
       name: Restore Npm Package Cache
       keys:
-      - v{{ .Environment.versionCache }}-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
-      paths:
-
+      - v3-deps-{{ .Environment.versionCache }}-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum ".circleci/config.yml" }}
+      - v3-deps
 
   install_cache: &install_cache
     run:
@@ -32,6 +31,12 @@ aliases:
       - ./.yarn
 
 jobs:
+  set-version:
+    executor: node
+    steps:
+    - run:
+        name: set yarn version
+        command: yarn set version berry
   code-check:
     executor: node
     steps:
@@ -74,7 +79,10 @@ workflows:
   #  - code-check
   build_and_deploy:
    jobs:
-      - build
+      - set-version
+      - build:
+          requires:
+           - set-version
       - deploy:
           context: GatsbyNetlify
           requires:
