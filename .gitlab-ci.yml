@@ -41,14 +41,8 @@ lint:
     - yarn install # yarn install is only to verify cache do to unplugged dependencies
     - yarn lint
     - yarn check-format
-
-
-jest:
-  stage: code-check
-  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
-  script:
-    - yarn install # yarn install is only to verify cache do to unplugged dependencies
     - yarn test:ci
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
   cache:
     paths:
      - coverage/
@@ -62,27 +56,10 @@ jest:
       cobertura: coverage/cobertura-coverage.xml
 
 
-# build_yarn:
-#   stage: build
-#   # rules:        
-#   #   - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-#   script:
-#     - yarn install && yarn build # yarn install is only to verify cache do to unplugged dependencies
-#   cache:
-#     paths:
-#      - public/
-#   artifacts:
-#     expire_in: 1 days
-#     when: on_success
-#     paths: 
-#      - public/
-
 netlify:
   stage: deploy
   rules:        
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-  # dependencies:
-  #   - build_yarn
   script:
     - yarn install # yarn install is only to verify cache do to unplugged dependencies
     - yarn build
